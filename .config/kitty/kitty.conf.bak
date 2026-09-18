@@ -10,19 +10,19 @@ scrollback_lines 5000
 scrollback_pager_history_size 10
 
 # BEGIN_KITTY_THEME
-# Aquarium Dark
+# One Dark
 include current-theme.conf
 # END_KITTY_THEME
 
 # Customizing
-tab_bar_style powerline
+shell_integration disabled
+cursor_shape block
 notify_on_cmd_finish invisible 20
+cursor_blink_interval 0
+confirm_os_window_close 0
+sync_to_monitor no
 
-cursor_tail 200
-cursor_trail_decay 0.1 0.4
-cursor_trail_start_threshold 2
+window_padding_width 20
 
-window_padding_width 5
-
-background_opacity 0.5
+background_opacity 0.8
 background_blur 64

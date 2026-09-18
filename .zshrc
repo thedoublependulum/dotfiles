@@ -124,3 +124,6 @@ alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time
 
 # ---- Zoxide -------
 alias cd="z"
+
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
