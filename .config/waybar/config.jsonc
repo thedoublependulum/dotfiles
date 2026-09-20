@@ -9,7 +9,8 @@
     "bluetooth",
     "network",
     "cpu",
-    "memory"
+    "memory",
+    "custom/power"
   ],
   "hyprland/window": {
     "max-length": 50
@@ -119,16 +120,21 @@
   "custom/media-now-playing": {
     "exec": "~/.config/waybar/custom_modules/media/media-now-playing.sh",
     "escape": true,
-    "tooltip": false,
+    "tooltip": false
   },
   "custom/media-animation": {
     "exec": "~/.config/waybar/custom_modules/media/media-animation.sh",
-    "tooltip": false,
+    "tooltip": false
   },
   "custom/media-time": {
     "exec": "~/.config/waybar/custom_modules/media/media-time.sh",
     "escape": true,
     "interval": 1,
-    "tooltip": false,
+    "tooltip": false
+  },
+  "custom/power": {
+    "format": "⏻",
+    "on-click": "wlogout",
+    "tooltip": false
   }
 }

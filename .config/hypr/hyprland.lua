@@ -45,6 +45,7 @@ local terminal = "kitty"
 local fileManager = "nemo"
 local browser = "firefox"
 local music = "spotify"
+local zed = "zeditor ~/Projects"
 
 -- ROFI
 local launcher = "rofi -show drun -show-icons"
@@ -68,6 +69,7 @@ hl.on("hyprland.start", function ()
    hl.exec_cmd("hyprpaper")
    hl.exec_cmd("playerctld daemon")
    hl.exec_cmd("systemctl --user start hyprpolkitagent")
+   hl.exec_cmd("wal -R")
 end)
 
 
@@ -113,7 +115,7 @@ hl.config({
         border_size = 1,
 
         col = {
-            active_border   = "rgb(250, 197, 132)",
+            active_border   = "#c47b6f",
             inactive_border = "rgba(595959aa)",
         },
 
@@ -268,7 +270,14 @@ hl.device({
     sensitivity = -0.5,
 })
 
-
+hl.window_rule({
+  match = {class = "dev.zed.Zed"},
+  workspace = "2",
+})
+hl.window_rule({
+  match = {class = "Spotify"},
+  workspace = "3",
+})
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
@@ -283,6 +292,7 @@ hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(fileManager))
 -- PROGRAMS
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(music))
+hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd(zed))
 
 -- ROFI
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(launcher))
@@ -292,8 +302,8 @@ hl.bind(secondMod .. " + SPACE", hl.dsp.exec_cmd(runner))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(hyprshot_region))
 hl.bind(secondMod .. " + P", hl.dsp.exec_cmd(hyprshot_window))
 
-hl.bind(mainMod .. " + Q", hl.dsp.window.close())
-hl.bind(secondMod .. " + Q", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind(mainMod .. " + W", hl.dsp.window.close())
+hl.bind(secondMod .. " + W", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 
 hl.bind(secondMod .. " + T", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(secondMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }))
@@ -356,7 +366,7 @@ hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = tr
 
 -- Example window rules that are useful
 
-local suppressMaximizeRule = hl.window_rule({
+hl.window_rule({
     -- Ignore maximize requests from all apps. You'll probably like this.
     name  = "suppress-maximize-events",
     match = { class = ".*" },
