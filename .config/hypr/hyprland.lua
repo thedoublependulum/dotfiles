@@ -42,10 +42,12 @@ hl.monitor({
 
 -- Set programs that you use
 local terminal = "kitty"
-local fileManager = "nemo"
+local projTerminal = "kitty ~/Projects/"
+local fileManager = "nemo ~/Projects/"
 local browser = "firefox"
 local music = "spotify"
-local zed = "zeditor ~/Projects"
+local zedProjects = "zeditor ~/Projects"
+local zedConfig = "zeditor ~/.config"
 
 -- ROFI
 local launcher = "rofi -show drun -show-icons"
@@ -244,7 +246,7 @@ hl.config({
         kb_layout  = "us",
         kb_variant = "",
         kb_model   = "",
-        kb_options = "caps:super",
+        kb_options = "caps:escape",
         kb_rules   = "",
 
         follow_mouse = 1,
@@ -272,27 +274,29 @@ hl.device({
 
 hl.window_rule({
   match = {class = "dev.zed.Zed"},
-  workspace = "2",
+  workspace = "1",
 })
 hl.window_rule({
   match = {class = "Spotify"},
-  workspace = "3",
+  workspace = "2",
 })
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
-local secondMod = "SUPER + ALT"
+local secondMod = "SUPER + SHIFT"
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(projTerminal))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(fileManager))
 
 -- PROGRAMS
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(music))
-hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd(zed))
+hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd(zedProjects))
+hl.bind(secondMod .. " + Z", hl.dsp.exec_cmd(zedConfig))
 
 -- ROFI
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(launcher))
@@ -331,8 +335,8 @@ for i = 1, 10 do
 end
 
 -- Example special workspace (scratchpad)
--- hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
--- hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
+hl.bind(secondMod .. " + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
