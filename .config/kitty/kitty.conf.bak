@@ -9,10 +9,7 @@ font_size	 12.0
 scrollback_lines 5000
 scrollback_pager_history_size 10
 
-# BEGIN_KITTY_THEME
-# One Dark
-include current-theme.conf
-# END_KITTY_THEME
+hide_window_decorations yes
 
 # Customizing
 shell_integration disabled
@@ -24,5 +21,12 @@ sync_to_monitor no
 
 window_padding_width 20
 
-background_opacity 0.8
+background_opacity 0.9
 background_blur 64
+
+
+
+# BEGIN_KITTY_THEME
+# Ayu
+include current-theme.conf
+# END_KITTY_THEME
